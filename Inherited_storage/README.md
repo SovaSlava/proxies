@@ -1,4 +1,4 @@
-# ### Inherited Storage
+### Inherited Storage
 
 #### How it works?
 
