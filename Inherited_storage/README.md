@@ -1,15 +1,30 @@
-# Basic Sample Hardhat Project
+# ### Inherited Storage
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, a sample script that deploys that contract, and an example of a task implementation, which simply lists the available accounts.
+#### How it works?
 
-Try running some of the following tasks:
+In first deploy, proxy and implement contract inherit storage1 contract. 
 
-```shell
-npx hardhat accounts
-npx hardhat compile
-npx hardhat clean
-npx hardhat test
-npx hardhat node
-node scripts/sample-script.js
-npx hardhat help
+In next implements, implement contract should have new storage contract (storage2), which inherit storage1
+
+```
+contract Storage1 {
+    address imol;
+    address proxyOwner;
+}
+
+contract Proxy is Storage1 {
+    ...
+}
+
+contract Impl1 is Storage1 {
+    ...
+}
+
+// Make new implement contract
+contract Storage2 is Storage1 {
+    string name; // new var
+}
+contract Impl2 is Storage2 {
+    ...
+}
 ```
