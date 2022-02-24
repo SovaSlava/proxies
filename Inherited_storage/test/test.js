@@ -8,7 +8,6 @@ describe("Proxy - storage version", function () {
     ProxyContract = await ethers.getContractFactory("Proxy");
     proxy = await ProxyContract.deploy(impl1.address);
     i1 = Impl1.attach(proxy.address);
-    let i2;
 
   })
   it("Initialize implementation", async function () {
@@ -26,6 +25,10 @@ describe("Proxy - storage version", function () {
     await proxy.setImplAddress(impl2.address);
     i2 = Impl2.attach(proxy.address);
   });
+
+  it("Read number, which was set via 1st implementation", async function () {
+    expect(await i2.number()).to.equal(123);
+  })
 
   it("Set name - its new function", async function () {
     await i2.setName("John");
