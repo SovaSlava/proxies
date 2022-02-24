@@ -28,3 +28,9 @@ contract Impl2 is Storage2 {
     ...
 }
 ```
+
+Disadvantages:
+
+1. New implementation contracts needs to inherit storage contracts that may contain many state variables that they don’t use.
+
+2. This pattern become tightly coupled to specific proxy contracts and facets and cannot be used by other proxy contracts and facets that declare different state variables.
