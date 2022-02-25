@@ -21,26 +21,8 @@ contract Proxy is StorageContract {
             calldatacopy(0x0, 0x0, calldatasize())
             let result := delegatecall(gas(), _target, 0x0, calldatasize(), 0x0, 0)
             returndatacopy(0x0, 0x0, returndatasize())
-         //   switch result case 0 {revert(0, 0)} default {return (0, returndatasize())}
             switch result case 0 {revert(0, returndatasize())} default {return (0, returndatasize())}
 
         }
-/*
-        (bool success, bytes memory returnedData) = impl.delegatecall(msg.data);
-        if (success) {
-            return returnedData;
-        } else {
-            if (returnedData.length > 0) {
-                // The easiest way to bubble the revert reason is using memory via assembly
-
-                assembly {
-                    let returndata_size := mload(returnedData)
-                    revert(add(32, returnedData), returndata_size)
-                }
-            } else {
-                revert("revert");
-            }
-        }
-    */
     }
 }
