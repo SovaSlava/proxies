@@ -15,5 +15,5 @@ People use beacon proxy pattern, when project has many proxies and want to have 
 
 * https://www.npmjs.com/package/@openzeppelin/hardhat-upgrades
 * https://docs.openzeppelin.com/contracts/3.x/api/proxy#BeaconProxy
-
+* https://blog.openzeppelin.com/the-state-of-smart-contract-upgrades/#beacons
 
