@@ -3,14 +3,16 @@ const { ethers, upgrades } = require("hardhat");
 import {
   BeaconImpl1,
   BeaconImpl2,
+  BeaconImpl1__factory,
+  BeaconImpl2__factory,
   MyBeacon,
 } from "../typechain";
 
 const provider = ethers.provider;
 describe("Beacon proxy", function () {
 
-   let ImplV1:BeaconImpl1;
-   let ImplV2:BeaconImpl2;
+   let ImplV1:BeaconImpl1__factory;
+   let ImplV2:BeaconImpl2__factory;
    let beacon:MyBeacon;
    let proxy1:BeaconImpl1;
    let proxy2:BeaconImpl1;
@@ -20,10 +22,10 @@ describe("Beacon proxy", function () {
    before(async () => {
         ImplV1 = await ethers.getContractFactory("Beacon_impl1");
         ImplV2 = await ethers.getContractFactory("Beacon_impl2");
-        beacon = await (await upgrades.deployBeacon(ImplV1)).deployed();
+        beacon = await (await upgrades.deployBeacon(ImplV1)).deployed() as MyBeacon;
 
-        proxy1 = await (await upgrades.deployBeaconProxy(beacon, ImplV1, ["dog"])).deployed();
-        proxy2 = await (await upgrades.deployBeaconProxy(beacon, ImplV1, ["dog"])).deployed();
+        proxy1 = await (await upgrades.deployBeaconProxy(beacon, ImplV1, ["dog"])).deployed() as BeaconImpl1;
+        proxy2 = await (await upgrades.deployBeaconProxy(beacon, ImplV1, ["dog"])).deployed() as BeaconImpl1;
 
     })
 
