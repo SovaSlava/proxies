@@ -7,7 +7,6 @@ yarn\.lock
 yarn-error\.log
 test/\.gitkeep
 build/
-package-lock.json
 *.abi
 *.bin
 .env.old

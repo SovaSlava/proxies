@@ -1,5 +1,5 @@
 const { expect } = require("chai");
-const { ethers, upgrades } = require("hardhat");
+import { ethers, upgrades } from "hardhat";
 import {
   BeaconImpl1,
   BeaconImpl2,
@@ -20,7 +20,7 @@ describe("Beacon proxy", function () {
    let proxy2v2:BeaconImpl2;
 
    before(async () => {
-        ImplV1 = await ethers.getContractFactory("Beacon_impl1");
+        ImplV1 = await ethers.getContractFactory("Beacon_impl1") as BeaconImpl1__factory;
         ImplV2 = await ethers.getContractFactory("Beacon_impl2");
         beacon = await (await upgrades.deployBeacon(ImplV1)).deployed() as MyBeacon;
 
