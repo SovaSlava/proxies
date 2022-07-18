@@ -21,7 +21,7 @@ describe("Beacon proxy", function () {
 
    before(async () => {
         ImplV1 = await ethers.getContractFactory("Beacon_impl1") as BeaconImpl1__factory;
-        ImplV2 = await ethers.getContractFactory("Beacon_impl2");
+        ImplV2 = await ethers.getContractFactory("Beacon_impl2") as BeaconImpl2__factory;
         beacon = await (await upgrades.deployBeacon(ImplV1)).deployed() as MyBeacon;
 
         proxy1 = await (await upgrades.deployBeaconProxy(beacon, ImplV1, ["dog"])).deployed() as BeaconImpl1;
